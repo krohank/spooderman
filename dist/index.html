@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#eeeae2">
+  <meta name="description" content="Your friendly neighborhood, in pixels. Swing through five chapters of New York in a touch-ready Spider-Man adventure.">
+  <title>Spider-Man — Pixel Stories</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Spider-Man Pixel Stories home">
+      <span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 7v26M17 16l-7-7V3M23 16l7-7V3M16 20L5 14V8M24 20l11-6V8M16 24L5 28v8M24 24l11 4v8M17 28l-7 6v5M23 28l7 6v5"/><ellipse cx="20" cy="22" rx="5" ry="9"/><circle cx="20" cy="10" r="3"/></svg></span>
+      <span><strong>SPIDER-MAN</strong><small>PIXEL STORIES</small></span>
+    </a>
+    <nav aria-label="Game navigation"><button class="nav-link active" id="play-tab">The game</button><button class="nav-link" id="chapters-tab">Chapters <span>05</span></button><button class="nav-link" id="controls-tab">How to play</button></nav>
+    <div class="header-end"><span class="availability"><i></i> YOUR FRIENDLY NEIGHBORHOOD</span><button class="icon-button" id="sound-button" aria-label="Enable game sound" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5L6 9H3v6h3l5 4zM16 9l5 6m0-6l-5 6"/></svg></button></div>
+  </header>
+
+  <main>
+    <section class="intro"><div><span class="eyebrow"><span class="red-square"></span> AN ARCADE LOVE LETTER TO NEW YORK</span><h1>A little hero. <em>A big city.</em></h1></div><p>Suit up. Swing out.<br>Every neighborhood has a story.</p></section>
+    <section class="game-shell" id="game-shell" aria-label="Spider-Man game">
+      <div class="game-topline"><span><i class="live-dot"></i> <span id="location">QUEENS, NEW YORK</span></span><span id="clock-label">GOLDEN HOUR · 6:42 PM</span><button id="fullscreen-button" aria-label="Enter fullscreen"><svg viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m8 0h5v-5"/></svg></button></div>
+      <div class="game-viewport" id="game-viewport">
+        <canvas id="game" aria-label="Pixel city game. Use arrow keys to move, Space to jump, hold X to swing, and C to shoot webs." tabindex="0"></canvas>
+        <div class="vignette" aria-hidden="true"></div>
+        <div class="hud" id="hud" hidden>
+          <div class="hud-left"><span class="mask-icon" aria-hidden="true">◈</span><div><div class="hud-caption">SPIDER-MAN</div><div class="hearts" id="hearts" aria-label="5 health points">♥ ♥ ♥ ♥ ♥</div></div></div>
+          <div class="hud-mission"><span id="hud-chapter">CHAPTER 01</span><strong id="hud-objective">Collect 8 web tokens</strong><div class="objective-track"><i id="objective-progress"></i></div></div>
+          <div class="hud-right"><span id="score">000000</span><button id="pause-button" aria-label="Pause game">Ⅱ</button></div>
+        </div>
+        <div class="home-overlay" id="home-overlay">
+          <div class="home-copy"><div class="game-kicker"><span></span> FIVE CHAPTERS. ONE FRIENDLY NEIGHBORHOOD.</div><h2>WITH GREAT<br><span>PIXELS</span> COMES<br>GREAT <span class="outline-type">POWER.</span></h2><p>The rooftops are calling. Be the hero<br>this city needs — one swing at a time.</p><button class="primary-button" id="start-button">LET’S SWING <span>↗</span></button><button class="continue-button" id="continue-button" hidden>Continue your story <span>→</span></button><div class="home-footnote"><span class="tiny-keys">← →</span> MOVE <span class="tiny-keys">SPACE</span> JUMP <span class="tiny-keys">X</span> SWING <span class="tiny-keys">C</span> WEB</div></div>
+          <div class="scene-caption"><span class="caption-star">✦</span><div><strong>Just another day in Queens.</strong><span>Well, almost.</span></div></div>
+          <span class="scene-coordinate">40°43′ N &nbsp; 73°48′ W</span>
+        </div>
+        <div class="story-overlay" id="story-overlay" hidden>
+          <div class="story-art" id="story-art"><span class="comic-caption" id="comic-caption">MEANWHILE, IN QUEENS…</span></div>
+          <div class="story-copy"><span class="eyebrow" id="story-eyebrow">CHAPTER 01 / 05</span><h2 id="story-title">Neighborhood<br>watch.</h2><p id="story-description"></p><div class="mission-brief"><span>YOUR MISSION</span><strong id="story-objective"></strong></div><button class="primary-button" id="story-button">LET’S DO THIS <span>→</span></button><span class="story-note" id="story-note">Hold X or the web button to swing. Release to fly.</span></div>
+        </div>
+        <div class="panel-overlay" id="pause-overlay" hidden><div class="paper-panel"><span class="eyebrow">EVEN HEROES NEED A BREATHER</span><h2>Hang tight.</h2><p>The city can wait a moment.</p><button class="primary-button" id="resume-button">BACK TO THE ROOFTOPS <span>→</span></button><button class="secondary-button" id="restart-button">Restart this chapter</button><button class="text-button" id="home-button">Return to title</button></div></div>
+        <div class="panel-overlay" id="gameover-overlay" hidden><div class="paper-panel"><span class="eyebrow">A HERO ALWAYS GETS BACK UP</span><h2 id="gameover-title">One more try?</h2><p id="gameover-description">Take a breath. Your neighborhood still needs you.</p><div class="result-score"><span>CHAPTER SCORE</span><strong id="gameover-score">0</strong></div><button class="primary-button" id="retry-button">TRY AGAIN <span>↗</span></button><button class="text-button" id="gameover-home-button">Return to title</button></div></div>
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+        <div class="chapter-swipe" id="chapter-swipe" aria-hidden="true"><span>THWIP!</span></div>
+        <div class="touch-controls" id="touch-controls" hidden>
+          <div class="move-controls"><button data-control="left" aria-label="Move left">◀</button><button data-control="right" aria-label="Move right">▶</button></div>
+          <div class="action-controls"><button class="web-shot" data-control="shoot" aria-label="Shoot web"><svg viewBox="0 0 32 32"><path d="M16 3v26M3 16h26M7 7l18 18M7 25L25 7M9 16l2-5 5-2 5 2 2 5-2 5-5 2-5-2z"/></svg><span>WEB</span></button><button class="swing-control" data-control="swing" aria-label="Hold to swing"><svg viewBox="0 0 32 32"><path d="M25 3L10 22m0 0l-4-1-3 4 3 4 4-3 0-4m2-3 5 4m-5-4-3-5"/></svg><span>SWING</span></button><button class="jump-control" data-control="jump" aria-label="Jump">↑<span>JUMP</span></button></div>
+        </div>
+      </div>
+      <div class="game-bottomline"><span><span class="pixel-cross">✣</span> <span id="bottom-status">A CITY WORTH SAVING.</span></span><span id="best-label">5 CHAPTERS <i>/</i> MADE FOR BIG & SMALL SCREENS</span><span class="bottom-right">NO DOWNLOAD. JUST THWIP. <span>↗</span></span></div>
+    </section>
+
+    <section class="chapter-section" id="chapter-section"><div class="section-label"><h2>THE STORY SO FAR</h2><span>ONE CITY. FIVE LITTLE ADVENTURES.</span></div><div class="chapter-grid" id="chapter-grid"></div></section>
+    <footer><span>BUILT WITH PIXELS. PLAYED WITH HEART.</span><span>An unofficial fan-made arcade adventure <span class="footer-web">✳</span></span></footer>
+  </main>
+  <dialog id="controls-dialog"><button class="dialog-close" aria-label="Close controls">×</button><span class="eyebrow">THE FRIENDLY NEIGHBORHOOD HANDBOOK</span><h2>Learn the ropes.<br><em>And the webs.</em></h2><div class="control-list"><div><span>01</span><strong>Find your feet</strong><p>Use ← → or A / D to move. On your phone, hold the arrow buttons.</p></div><div><span>02</span><strong>Take a leap</strong><p>Press Space, W or ↑ to jump. Tap again in the air for a double jump.</p></div><div><span>03</span><strong>Get in the swing</strong><p>Hold X or SWING to attach a web overhead. Steer to build momentum, then release to launch. You can attach again midair.</p></div><div><span>04</span><strong>Keep it friendly</strong><p>Press C or WEB to fire at drones and the Goblin. Get close to stranded citizens to rescue them. Follow the rooftop beacon when your objective is complete.</p></div></div><div class="handbook-note">Progress saves on this browser. P or Escape pauses. Sound is optional. You can replay any unlocked chapter.</div><button class="primary-button dialog-close-action">GOT IT. LET’S SWING <span>↗</span></button></dialog>
+  <script type="module" src="app.mjs"></script>
+</body>
+</html>
