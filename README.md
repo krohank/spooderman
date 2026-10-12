@@ -56,3 +56,7 @@ The ten engine tests cover movement, rooftop collisions, double jumps, rope cons
 - `preview.mjs`: dependency-free local HTTP server.
 
 `dist/` is the complete static website: deploy its contents to any static host. Gameplay saves and best scores are stored per browser and site origin. This is an unofficial fan project; the Spider-Man characters and supplied artwork are not claimed as original intellectual property.
+
+## Vercel
+
+Import this repository into Vercel with the repository root as the Root Directory. The checked-in `vercel.json` selects the **Other** framework preset, runs `npm run check`, and publishes `dist/`. No environment variables are needed. When the repository is connected to Vercel, pushing to `main` creates a production deployment.
